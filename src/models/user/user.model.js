@@ -39,24 +39,16 @@ async function saveUser(user) {
 async function addNewUser(user) {
     console.log('User' + user);
     const email = user.email;
-    const list = {};
-    list.listId = uuidv4();
     user.userId = uuidv4();
 
-    list.items = [];
-    list.userId = user.userId;
     const foundUser = await userDatabase.findOne({ email }).exec();
     if (foundUser) {
         return { msg: 'User already exists.' };
     }
 
     user.location = '';
-    user.defaultList = '';
-    user.lists = [list.listId];
-    console.log('List: ' + list);
     console.log('User: ' + user);
     await saveUser(user);
-    await saveList(list);
     return { msg: 'User successfully created.', user: user };
 }
 

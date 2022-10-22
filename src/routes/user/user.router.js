@@ -12,9 +12,9 @@ const usersRouter = express.Router();
 
 usersRouter.get('/', httpGetAllUsers);
 usersRouter.get('/:userId', httpGetUserById);
-usersRouter.post('/signup', httpAddUser);
+usersRouter.post('/', httpAddUser);
 usersRouter.post('/user', httpGetUser);
-usersRouter.put('/user', httpUpdateUser);
+usersRouter.put('/:userId', httpUpdateUser);
 usersRouter.delete('/:id');
 
 module.exports = usersRouter;
